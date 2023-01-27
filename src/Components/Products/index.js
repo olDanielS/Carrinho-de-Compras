@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { CartContext } from '../../Context';
 
 export default function Products({ data, addToCart}) {
 
