@@ -4,15 +4,18 @@ import { CartContext } from '../../Context';
 import CartItems from '../../Components/CartItems';
 
 export default function Cart() {
-
-  const {itemsCart} = useContext(CartContext)
-
+  const {cart, handleAddItem, handleDecrease} = useContext(CartContext)
+  
  return (
    <View>
     <FlatList
-      data={itemsCart}
+      data={cart}
       keyExtractor={(item) =>  item.id}
-      renderItem={({item}) => <CartItems data={item}/>}
+      ListEmptyComponent={() => <Text>Ainda sem produtos no carrinho.</Text>}
+      renderItem={({item}) => <CartItems data={item}
+      addAmmout={() => handleAddItem(item)}
+      removeAmmout={() => handleDecrease(item)}
+      />}
     />
    </View>
   );

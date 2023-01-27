@@ -7,7 +7,7 @@ import Feater from 'react-native-vector-icons/Feather';
 import { CartContext } from '../../Context';
 
 export default function Home() {
-	const {itemsCart, HandleAddItem} = useContext(CartContext)
+	const {cart, handleAddItem} = useContext(CartContext)
 	const navigation = useNavigation();
 	
 	const [products, setProducts] = useState([
@@ -22,7 +22,7 @@ export default function Home() {
 	])
 
 	function addItemCart(item){
-		HandleAddItem(item)
+		handleAddItem(item)
 	}
 	return (
 		<View>
@@ -31,13 +31,13 @@ export default function Home() {
 
 				<TouchableOpacity style={styles.pointer} onPress={() => navigation.navigate('Cart')}>
 						<Feater name='shopping-cart' size={30} color="red"/>
-						<Text style={styles.txtPointer}>{itemsCart?.length}</Text>
+						<Text style={styles.txtPointer}>{cart?.length}</Text>
 				</TouchableOpacity>
 			</View>
 			<FlatList
 				data={products}
 				keyExtractor={(item) => item.id}
-				renderItem={({ item }) => <Products data={item} addToCart={() => addItemCart(item)}/>}
+				renderItem={({ item }) => <Products data={item} addToCart={ () => addItemCart(item)}/>}
 			/>
 		</View>
 	);
@@ -45,7 +45,7 @@ export default function Home() {
 
 const styles = StyleSheet.create({
 	header: {
-		marginTop: 45,
+		marginTop: 35,
 		marginBottom: 15,
 		padding:10,
 		justifyContent:'space-between',
